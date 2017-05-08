@@ -4,6 +4,7 @@ import { HeroJobAdComponent }   from './hero-job-ad.component';
 import { HeroProfileComponent } from './hero-profile.component';
 import { AdItem }               from './ad-item';
 
+//hello world
 @Injectable()
 export class AdService {
   getAds() {
