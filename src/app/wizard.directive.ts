@@ -1,9 +1,10 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[ad-host]',
+  selector: '[wizard-host]'
 })
-export class AdDirective {
-  constructor(public viewContainerRef: ViewContainerRef) { }
-}
+export class WizardDirective {
 
+  constructor(public viewContainerRef: ViewContainerRef) { }
+
+}

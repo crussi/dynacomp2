@@ -1,15 +1,15 @@
 import { Type } from '@angular/core';
-import { StepEnum } from './step.enum'
+import { StepEnum, InputTypeEnum } from './step.enum'
 
 export interface IStep {
     Number: Number;
     Name: StepEnum;    
+    InputType: InputTypeEnum;
     Component: Type<any>;
     Declaration: string;
     Question: string;
     Data: any;
-    PrevStep: StepEnum;      
-    NextStep: StepEnum;
+    Steps: any;
     
 }
 

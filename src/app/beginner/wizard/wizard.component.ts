@@ -1,6 +1,7 @@
 import { Component, Input, AfterViewInit, AfterContentInit, ViewChild, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 
-import { AdDirective } from '../../ad.directive';
+//import { AdDirective } from '../../ad.directive';
+import { WizardDirective } from '../../wizard.directive';
 //import { AdItem }      from './ad-item';
 //import { StepYesNo, StepOptions} from '../step.model';
 
@@ -12,14 +13,14 @@ import { BaseComponent } from '../base.component';
   template: `
               <div class="ad-banner">
                 <h3>Steps</h3>
-                <ng-template ad-host></ng-template>
+                <ng-template wizard-host></ng-template>
               </div>
             `
 })
 export class BeginnerWizard implements AfterViewInit, OnDestroy {
   @Input() ads: IStep[];
   currentAddIndex: number = -1;
-  @ViewChild(AdDirective) adHost: AdDirective;
+  @ViewChild(WizardDirective) adHost: WizardDirective;
   subscription: any;
   interval: any;
 

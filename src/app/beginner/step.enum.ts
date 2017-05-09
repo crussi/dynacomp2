@@ -1,6 +1,6 @@
 export enum StepEnum {
     Undefined = 0,
-    Actionable = 1,
+    IsActionable = 1,
     IsProject = 2,
     NonActionable = 3,
     ProjectPlan = 4,
@@ -16,5 +16,13 @@ export enum StepEnum {
     Schedule = 14,
     ApproveNewEvent = 15,
     RefineAction = 16,
-    ApproveNewTask = 17
+    ApproveNewTask = 17,
+    ApproveChange = 18
+}
+
+export enum InputTypeEnum {
+    YesNo = 0,
+    Options = 1,
+    Form = 2,
+    OkCancel = 3
 }
