@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StepService } from './beginner/step.service';
-import { IStep } from './beginner/step.interface';
+import { Step } from './beginner/step.model';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { IStep } from './beginner/step.interface';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  ads: IStep[];
+  ads: Step[];
 
   constructor(private stepService: StepService) {}
 
