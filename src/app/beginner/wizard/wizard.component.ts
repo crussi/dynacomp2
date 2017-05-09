@@ -6,7 +6,7 @@ import { WizardDirective } from '../../wizard.directive';
 //import { StepYesNo, StepOptions} from '../step.model';
 
 import { IStep } from '../step.interface';
-import { BaseComponent } from '../base.component';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'beginner-wizard',
@@ -41,7 +41,8 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
 
   loadComponent() {
     this.currentAddIndex = (this.currentAddIndex + 1) % this.ads.length;
-    let adItem: IStep = this.ads[this.currentAddIndex];
+    //let adItem: IStep = this.ads[this.currentAddIndex];
+    let adItem: IStep = this.ads[0];
     //console.log('wizard adItem IStep: ', adItem);
     let componentFactory = this._componentFactoryResolver.resolveComponentFactory(adItem.Component);
 
@@ -50,11 +51,15 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
     (<BaseComponent>componentRef.instance).Data = adItem.Data;
+    (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => console.log('step changed: ',event)); //= function(event) { console.log('hello world'); }
   }
 
+
+
   getAds() {
-    this.interval = setInterval(() => {
-      this.loadComponent();
-    }, 3000);
+this.loadComponent();
+    // this.interval = setInterval(() => {
+    //   this.loadComponent();
+    // }, 3000);
   }
 }

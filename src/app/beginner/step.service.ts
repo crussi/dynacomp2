@@ -12,6 +12,7 @@ import { NextAction } from './nextaction/nextaction.component';
 import { Delegate } from './delegate/delegate.component';
 import { IsSchedulable } from './isschedulable/isschedulable.component';
 import { RefineAction } from './refineaction/refineaction.component';
+import { YesNo } from './yesno/yesno.component';
 
 
 @Injectable()
@@ -21,7 +22,7 @@ export class StepService {
 
   getSteps() {
     return [
-      new Step(IsActionable,
+      new Step(YesNo,
       {
         Number: 1,
         Name: StepEnum.IsActionable,
@@ -31,8 +32,8 @@ export class StepService {
         Steps: { 
           YesStep: StepEnum.IsProject, 
           NoStep: StepEnum.NonActionable,
-          PrevStep: StepEnum.Undefined,
-          NextStep: StepEnum.Undefined
+          PrevStep: StepEnum.NonActionable,
+          NextStep: StepEnum.NonActionable
         }
       }),
       new Step(IsProject,

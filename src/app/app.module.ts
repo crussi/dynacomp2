@@ -19,6 +19,8 @@ import { NextAction } from './beginner/nextaction/nextaction.component';
 import { Delegate } from './beginner/delegate/delegate.component';
 import { IsSchedulable } from './beginner/isschedulable/isschedulable.component';
 import { RefineAction } from './beginner/refineaction/refineaction.component';
+import { YesNo } from './beginner/yesno/yesno.component';
+import { BaseComponent } from './beginner/base/base.component';
 
 @NgModule({
   declarations: [ AppComponent,
@@ -34,7 +36,9 @@ import { RefineAction } from './beginner/refineaction/refineaction.component';
                   NextAction,
                   Delegate,
                   IsSchedulable,
-                  RefineAction ],
+                  RefineAction,
+                  YesNo,
+                  BaseComponent ],
   entryComponents: [ 
                   IsActionable, 
                   IsProject, 
@@ -46,7 +50,8 @@ import { RefineAction } from './beginner/refineaction/refineaction.component';
                   NextAction,
                   Delegate,
                   IsSchedulable,
-                  RefineAction ],                  
+                  RefineAction,
+                  YesNo ],                  
   imports: [
     BrowserModule,
     FormsModule,

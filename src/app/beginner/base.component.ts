@@ -1,3 +1,3 @@
-export interface BaseComponent {
-  Data: any;
-}
+// export interface BaseComponent {
+//   Data: any;
+// }
