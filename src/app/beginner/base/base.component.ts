@@ -5,15 +5,14 @@ import { StepEnum } from '../step.enum';
   selector: 'base',
   //templateUrl: './isactionable.component.html',
   template: `
-      <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Prev button</button>
-      <button *ngIf="hasNext" (click)="LoadStep(NextStep)">Next button</button>
-
+    <div></div>
   `,  
   styleUrls: ['./base.component.css']
 })
-export class BaseComponent implements OnInit {
-
+export class BaseComponent implements OnInit  {
+  //Data: any;
   @Input() Data: any;
+  //@Input() trigger: Number;
   @Output() stepChanged: EventEmitter<StepEnum> = new EventEmitter();
 
   hasYes: boolean;
@@ -28,6 +27,18 @@ export class BaseComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.Initialize();
+  }
+
+
+
+  LoadStep(step:StepEnum) {
+    console.log('LoadStep:' + step);
+    this.stepChanged.emit(step);
+  }
+
+  Initialize(){
+    console.log('Initialize ',this.Data);
     if (this.Data.Steps.YesStep != StepEnum.Undefined) {
       this.hasYes = true;
       this.YesStep = this.Data.Steps.YesStep;
@@ -43,12 +54,8 @@ export class BaseComponent implements OnInit {
     if (this.Data.Steps.NextStep != StepEnum.Undefined) {
       this.hasNext = true;
       this.NextStep = this.Data.Steps.NextStep;
-    }    
-  }
+    } 
 
-  LoadStep(step:StepEnum) {
-    console.log('NextStep:' + step);
-    this.stepChanged.emit(step);
   }
 
 }

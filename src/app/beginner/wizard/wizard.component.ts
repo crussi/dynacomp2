@@ -4,7 +4,7 @@ import { Component, Input, AfterViewInit, AfterContentInit, ViewChild, Component
 import { WizardDirective } from '../../wizard.directive';
 //import { AdItem }      from './ad-item';
 //import { StepYesNo, StepOptions} from '../step.model';
-
+import { StepEnum } from '../step.enum';
 import { IStep } from '../step.interface';
 import { BaseComponent } from '../base/base.component';
 
@@ -31,15 +31,15 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
     // this.getAds();
   }
   ngAfterContentInit() {
-    this.loadComponent();
-    this.getAds();  
+    this.loadComponent(StepEnum.IsActionable);
+    //this.getAds();  
   }
 
   ngOnDestroy() {
     clearInterval(this.interval);
   }
 
-  loadComponent() {
+  loadComponentX() {
     this.currentAddIndex = (this.currentAddIndex + 1) % this.ads.length;
     //let adItem: IStep = this.ads[this.currentAddIndex];
     let adItem: IStep = this.ads[0];
@@ -51,15 +51,36 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
     (<BaseComponent>componentRef.instance).Data = adItem.Data;
-    (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => console.log('step changed: ',event)); //= function(event) { console.log('hello world'); }
+    (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event)); //= function(event) { console.log('hello world'); }
+  }
+
+  loadComponent(step:StepEnum) {
+    //console.log('loadComponent ' + step);
+    for (let i = 0; i < this.ads.length; i++) {
+        if (this.ads[i].Name == step) {
+          let adItem: IStep = this.ads[i];
+          //console.log('found step i:' + i,adItem);
+          //console.log('wizard adItem IStep: ', adItem);
+          let componentFactory = this._componentFactoryResolver.resolveComponentFactory(adItem.Component);
+
+          let viewContainerRef = this.adHost.viewContainerRef;
+          viewContainerRef.clear();
+
+          let componentRef = viewContainerRef.createComponent(componentFactory);
+          (<BaseComponent>componentRef.instance).Data = adItem.Data;
+          
+          (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event)); //= function(event) { console.log('hello world'); }
+          break;          
+        }
+    }
   }
 
 
 
-  getAds() {
-this.loadComponent();
-    // this.interval = setInterval(() => {
-    //   this.loadComponent();
-    // }, 3000);
-  }
+  // getAds() {
+  //   this.loadComponent();
+  //   // this.interval = setInterval(() => {
+  //   //   this.loadComponent();
+  //   // }, 3000);
+  // }
 }
