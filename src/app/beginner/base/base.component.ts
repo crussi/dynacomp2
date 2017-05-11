@@ -15,10 +15,16 @@ export class BaseComponent implements OnInit  {
   //@Input() trigger: Number;
   @Output() stepChanged: EventEmitter<StepEnum> = new EventEmitter();
 
+  hasDeclaration: boolean;
+  hasQuestion: boolean;
   hasYes: boolean;
   YesStep: StepEnum;
   hasNo: boolean;
   NoStep: StepEnum;
+  hasOk: boolean;
+  OkStep: StepEnum;
+  hasCancel: boolean;
+  CancelStep: StepEnum;  
   hasPrev: boolean;
   PrevStep: StepEnum;
   hasNext: boolean;
@@ -39,6 +45,8 @@ export class BaseComponent implements OnInit  {
 
   Initialize(){
     console.log('Initialize ',this.Data);
+    this.hasDeclaration = this.Data.Declaration.length > 0;
+    this.hasQuestion = this.Data.Question.length > 0;
     if (this.Data.Steps.YesStep != StepEnum.Undefined) {
       this.hasYes = true;
       this.YesStep = this.Data.Steps.YesStep;
@@ -46,7 +54,15 @@ export class BaseComponent implements OnInit  {
     if (this.Data.Steps.NoStep != StepEnum.Undefined) {
       this.hasNo = true;
       this.NoStep = this.Data.Steps.NoStep;
-    }    
+    } 
+    if (this.Data.Steps.OkStep != StepEnum.Undefined) {
+      this.hasOk = true;
+      this.OkStep = this.Data.Steps.OkStep;
+    }
+    if (this.Data.Steps.CancelStep != StepEnum.Undefined) {
+      this.hasCancel = true;
+      this.CancelStep = this.Data.Steps.CancelStep;
+    }         
     if (this.Data.Steps.PrevStep != StepEnum.Undefined) {
       this.hasPrev = true;
       this.PrevStep = this.Data.Steps.PrevStep;
@@ -55,6 +71,7 @@ export class BaseComponent implements OnInit  {
       this.hasNext = true;
       this.NextStep = this.Data.Steps.NextStep;
     } 
+
 
   }
 

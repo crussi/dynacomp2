@@ -3,21 +3,21 @@ import { BaseComponent } from '../base/base.component';
 import { StepEnum } from '../step.enum';
 
 @Component({
-  selector: 'yesno',
+  selector: 'schedule',
   //templateUrl: './isactionable.component.html',
   template: `
     <div>
       <h2 *ngIf="hasDeclaration">{{Data.Declaration}}</h2>
       <h3 *ngIf="hasQuestion">{{Data.Question}}</h3>
-      <button *ngIf="hasYes" (click)="LoadStep(YesStep)">Yes</button>
-      <button *ngIf="hasNo" (click)="LoadStep(NoStep)">No</button>
+      <p>Schedule controls go here ....</p>
+      
       <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Previous</button>
       <button *ngIf="hasNext" (click)="LoadStep(NextStep)">Next</button>
     </div>
   `,  
-  styleUrls: ['./yesno.component.css']
+  styleUrls: ['./schedule.component.css']
 })
-export class YesNo extends BaseComponent implements OnInit   {
+export class Schedule extends BaseComponent implements OnInit   {
 
   constructor() { 
     super();

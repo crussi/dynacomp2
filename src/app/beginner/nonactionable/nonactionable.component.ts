@@ -3,21 +3,25 @@ import { BaseComponent } from '../base/base.component';
 import { StepEnum } from '../step.enum';
 
 @Component({
-  selector: 'yesno',
+  selector: 'nonactionable',
   //templateUrl: './isactionable.component.html',
   template: `
     <div>
       <h2 *ngIf="hasDeclaration">{{Data.Declaration}}</h2>
       <h3 *ngIf="hasQuestion">{{Data.Question}}</h3>
-      <button *ngIf="hasYes" (click)="LoadStep(YesStep)">Yes</button>
-      <button *ngIf="hasNo" (click)="LoadStep(NoStep)">No</button>
+      <form action="">
+        <input type="radio" name="gender" value="male">Trash?<br>
+        <input type="radio" name="gender" value="female">Someday/maybe?<br>
+        <input type="radio" name="gender" value="other">Reference
+      </form>      
+
       <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Previous</button>
       <button *ngIf="hasNext" (click)="LoadStep(NextStep)">Next</button>
     </div>
   `,  
-  styleUrls: ['./yesno.component.css']
+  styleUrls: ['./nonactionable.component.css']
 })
-export class YesNo extends BaseComponent implements OnInit   {
+export class NonActionable extends BaseComponent implements OnInit   {
 
   constructor() { 
     super();
