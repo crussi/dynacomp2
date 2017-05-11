@@ -5,7 +5,7 @@ import { WizardDirective } from '../../wizard.directive';
 //import { AdItem }      from './ad-item';
 //import { StepYesNo, StepOptions} from '../step.model';
 import { StepEnum } from '../step.enum';
-import { IStep } from '../step.interface';
+import { Step, StepTransition } from '../step.model';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
@@ -18,7 +18,7 @@ import { BaseComponent } from '../base/base.component';
             `
 })
 export class BeginnerWizard implements AfterViewInit, OnDestroy {
-  @Input() ads: IStep[];
+  @Input() ads: Step[];
   currentAddIndex: number = -1;
   @ViewChild(WizardDirective) adHost: WizardDirective;
   subscription: any;
@@ -31,7 +31,7 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
     // this.getAds();
   }
   ngAfterContentInit() {
-    this.loadComponent(StepEnum.IsActionable);
+    this.loadComponent(new StepTransition(StepEnum.Start,StepEnum.IsActionable));
     //this.getAds();  
   }
 
@@ -39,35 +39,21 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
     clearInterval(this.interval);
   }
 
-  loadComponentX() {
-    this.currentAddIndex = (this.currentAddIndex + 1) % this.ads.length;
-    //let adItem: IStep = this.ads[this.currentAddIndex];
-    let adItem: IStep = this.ads[0];
-    //console.log('wizard adItem IStep: ', adItem);
-    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(adItem.Component);
 
-    let viewContainerRef = this.adHost.viewContainerRef;
-    viewContainerRef.clear();
-
-    let componentRef = viewContainerRef.createComponent(componentFactory);
-    (<BaseComponent>componentRef.instance).Data = adItem.Data;
-    (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event)); //= function(event) { console.log('hello world'); }
-  }
-
-  loadComponent(step:StepEnum) {
-    //console.log('loadComponent ' + step);
+  loadComponent(stepTransition:StepTransition) {
+    console.log('loadComponent ' + stepTransition.to);
     for (let i = 0; i < this.ads.length; i++) {
-        if (this.ads[i].Name == step) {
-          let adItem: IStep = this.ads[i];
-          //console.log('found step i:' + i,adItem);
-          //console.log('wizard adItem IStep: ', adItem);
+        if (this.ads[i].Name == stepTransition.to) {
+          let adItem: Step = this.ads[i];
+          if (adItem.Name == StepEnum.ApproveChange) {
+            adItem.Steps.PrevStep = stepTransition.from;
+          }
           let componentFactory = this._componentFactoryResolver.resolveComponentFactory(adItem.Component);
-
           let viewContainerRef = this.adHost.viewContainerRef;
           viewContainerRef.clear();
 
           let componentRef = viewContainerRef.createComponent(componentFactory);
-          (<BaseComponent>componentRef.instance).Data = adItem.Data;
+          (<BaseComponent>componentRef.instance).Settings = adItem.Settings;
           
           (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event)); //= function(event) { console.log('hello world'); }
           break;          

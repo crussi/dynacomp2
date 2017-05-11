@@ -18,7 +18,8 @@ export enum StepEnum {
     RefineAction = 16,
     ApproveNewTask = 17,
     ApproveChange = 18,
-    Done = 19
+    Start = 19,
+    Done = 20
 }
 
 export enum InputTypeEnum {
