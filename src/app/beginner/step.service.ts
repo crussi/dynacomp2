@@ -30,6 +30,21 @@ export class StepService {
         undefined, 
         undefined)
         )
+      ),
+      new Step(YesNo,
+      new StepSettings(
+        StepEnum.IsProject,
+        "",
+        "Does this require multiple steps?",
+        new StepOptions(StepEnum.ProjectPlan, 
+        StepEnum.NextAction,
+        StepEnum.IsActionable, 
+        undefined, 
+        undefined, 
+        undefined)
+        )
+      )
+       
       // new Step(YesNo,
       // {
       //   Name: StepEnum.IsProject,
@@ -174,7 +189,7 @@ export class StepService {
       //     NextStep: StepEnum.ApproveChange
       //   }
       // }
-      ) 
+
            
     ]
   }
