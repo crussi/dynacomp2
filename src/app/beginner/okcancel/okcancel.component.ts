@@ -7,8 +7,8 @@ import { StepEnum } from '../step.enum';
   //templateUrl: './isactionable.component.html',
   template: `
     <div>
-      <h2 *ngIf="hasDeclaration">{{Data.Declaration}}</h2>
-      <h3 *ngIf="hasQuestion">{{Data.Question}}</h3>
+      <h2 *ngIf="hasDeclaration">{{Declaration}}</h2>
+      <h3 *ngIf="hasQuestion">{{Question}}</h3>
       <button *ngIf="hasOk" (click)="LoadStep(OkStep)">Ok</button>
       <button *ngIf="hasCancel" (click)="LoadStep(CancelStep)">Cancel</button>
       <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Previous</button>

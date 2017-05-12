@@ -23,7 +23,8 @@ export class StepService {
         StepEnum.IsActionable,
         "",
         "Is this actionable?",
-        new StepOptions(StepEnum.IsProject, 
+        new StepOptions(
+        StepEnum.IsProject, 
         StepEnum.NonActionable,
         undefined, 
         undefined, 
@@ -36,159 +37,169 @@ export class StepService {
         StepEnum.IsProject,
         "",
         "Does this require multiple steps?",
-        new StepOptions(StepEnum.ProjectPlan, 
+        new StepOptions(
+        StepEnum.ProjectPlan, 
         StepEnum.NextAction,
         StepEnum.IsActionable, 
         undefined, 
         undefined, 
         undefined)
         )
-      )
-       
-      // new Step(YesNo,
-      // {
-      //   Name: StepEnum.IsProject,
-      //   Declaration: "",
-      //   Question: "Does this require multiple steps?",
-      //   Steps: {
-      //     YesStep: StepEnum.ProjectPlan,
-      //     NoStep: StepEnum.NextAction,
-      //     PrevStep: StepEnum.IsActionable,
-      //     NextStep: StepEnum.Undefined
-      //   }
-      // }),
-      // new Step(ProjectPlan,
-      // {
-      //   Name: StepEnum.ProjectPlan,
-      //   Declaration: "",
-      //   Question: "What is the successful outcome?",
-      //   Steps: {
-      //     YesStep: StepEnum.Undefined,
-      //     NoStep: StepEnum.Undefined,
-      //     PrevStep: StepEnum.IsProject,
-      //     NextStep: StepEnum.ApproveChange
-      //   }
-      // }),      
-      // new Step(NextAction,
-      // {
-      //   Name: StepEnum.NextAction,
-      //   Declaration: "",
-      //   Question: "What is the next action?",
-      //   Steps: {
-      //     YesStep: StepEnum.Undefined,
-      //     NoStep: StepEnum.Undefined,
-      //     PrevStep: StepEnum.IsProject,
-      //     NextStep: StepEnum.IsDoableNow
-      //   }
-      // }),
-      // new Step(NonActionable,
-      // {
-      //   Name: StepEnum.NonActionable,
-      //   Declaration: "",
-      //   Question: "How would you categorize this?",
-      //   Steps: {
-      //     YesStep: StepEnum.Undefined,
-      //     NoStep: StepEnum.Undefined,
-      //     PrevStep: StepEnum.IsActionable,
-      //     NextStep: StepEnum.ApproveChange
-      //   }
-      // }),
-      // new Step(OkCancel,
-      // {
-      //   Name: StepEnum.ApproveChange,
-      //   Declaration: "",
-      //   Question: "Approve change?",
-      //   Steps: {
-      //     OkStep: StepEnum.Done,
-      //     CancelStep: StepEnum.Done,
-      //     PrevStep: StepEnum.Done,
-      //     NextStep: StepEnum.Undefined
-      //   }
-      // }),
-      //  new Step(YesNo,
-      // {
-      //   Name: StepEnum.IsDoableNow,
-      //   Declaration: "",
-      //   Question: "Can this be done in 2-5 minutes?",
-      //   Steps: {
-      //     YesStep: StepEnum.DoItNow,
-      //     NoStep: StepEnum.IsDelegatable,
-      //     PrevStep: StepEnum.NextAction,
-      //     NextStep: StepEnum.Undefined
-      //   }
-      // }),
-      //  new Step(YesNo,
-      // {
-      //   Name: StepEnum.DoItNow,
-      //   Declaration: "Do it now!",
-      //   Question: "Did you do it?",
-      //   Steps: {
-      //     YesStep: StepEnum.ApproveChange,
-      //     NoStep: StepEnum.IsDelegatable,
-      //     PrevStep: StepEnum.IsDoableNow,
-      //     NextStep: StepEnum.Undefined
-      //   }
-      // }),
-      //  new Step(YesNo,
-      // {
-      //   Name: StepEnum.IsDelegatable,
-      //   Declaration: "",
-      //   Question: "Can this be delegated?",
-      //   Steps: {
-      //     YesStep: StepEnum.Delegate,
-      //     NoStep: StepEnum.IsSchedulable,
-      //     PrevStep: StepEnum.IsDoableNow,
-      //     NextStep: StepEnum.Undefined
-      //   }
-      // }),
-      //  new Step(YesNo,
-      // {
-      //   Name: StepEnum.IsSchedulable,
-      //   Declaration: "",
-      //   Question: "Does this need to be done on a specific date and time?",
-      //   Steps: {
-      //     YesStep: StepEnum.Schedule,
-      //     NoStep: StepEnum.RefineAction,
-      //     PrevStep: StepEnum.IsDelegatable,
-      //     NextStep: StepEnum.Undefined
-      //   }
-      // }),
-      //  new Step(Schedule,
-      // {
-      //   Name: StepEnum.Schedule,
-      //   Declaration: "Create event ...",
-      //   Question: "",
-      //   Steps: {
-      //     YesStep: StepEnum.Undefined,
-      //     NoStep: StepEnum.Undefined,
-      //     PrevStep: StepEnum.IsSchedulable,
-      //     NextStep: StepEnum.ApproveChange
-      //   }
-      // }),      
-      //  new Step(RefineAction,
-      // {
-      //   Name: StepEnum.RefineAction,
-      //   Declaration: "Please refine this task ...",
-      //   Question: "",
-      //   Steps: {
-      //     YesStep: StepEnum.Undefined,
-      //     NoStep: StepEnum.Undefined,
-      //     PrevStep: StepEnum.IsSchedulable,
-      //     NextStep: StepEnum.ApproveChange
-      //   }
-      // }),
-      //  new Step(Delegate,
-      // {
-      //   Name: StepEnum.Delegate,
-      //   Declaration: "Please refine this task ...",
-      //   Question: "",
-      //   Steps: {
-      //     YesStep: StepEnum.Undefined,
-      //     NoStep: StepEnum.Undefined,
-      //     PrevStep: StepEnum.IsDelegatable,
-      //     NextStep: StepEnum.ApproveChange
-      //   }
-      // }
+      ),
+      new Step(YesNo,
+      new StepSettings(
+        StepEnum.ProjectPlan,
+        "",
+        "What is the successful outcome?",
+        new StepOptions(
+        undefined, 
+        undefined,
+        StepEnum.IsProject, 
+        StepEnum.ApproveChange, 
+        undefined, 
+        undefined)
+        )
+      ),      
+      new Step(NextAction,
+      new StepSettings(
+        StepEnum.ProjectPlan,
+        "",
+        "What is the next action?",
+        new StepOptions(
+        undefined, 
+        undefined,
+        StepEnum.IsProject, 
+        StepEnum.IsDoableNow, 
+        undefined, 
+        undefined)
+        )
+      ),           
+      new Step(NonActionable,
+      new StepSettings(
+        StepEnum.ProjectPlan,
+        "",
+        "How would you categorize this?",
+        new StepOptions(
+        undefined, 
+        undefined,
+        StepEnum.IsActionable, 
+        StepEnum.ApproveChange, 
+        undefined, 
+        undefined)
+        )
+      ),           
+      new Step(OkCancel,
+      new StepSettings(
+        StepEnum.ApproveChange,
+        "",
+        "Approve change?",
+        new StepOptions(
+        StepEnum.Done, 
+        StepEnum.Done,
+        StepEnum.Done, 
+        StepEnum.Done, 
+        StepEnum.Done, 
+        StepEnum.Done)
+        )
+      ),           
+      new Step(YesNo,
+      new StepSettings(
+        StepEnum.IsDoableNow,
+        "",
+        "Can this be done in 2-5 minutes?",
+        new StepOptions(
+        StepEnum.DoItNow, 
+        StepEnum.IsDelegatable,
+        StepEnum.NextAction, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined)
+        )
+      ),           
+      new Step(YesNo,
+      new StepSettings(
+        StepEnum.DoItNow,
+        "Do it now!",
+        "Did you do it?",
+        new StepOptions(
+        StepEnum.ApproveChange, 
+        StepEnum.IsDelegatable,
+        StepEnum.IsDoableNow, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined)
+        )
+      ),      
+      new Step(YesNo,
+      new StepSettings(
+        StepEnum.IsDelegatable,
+        "",
+        "Can this be delegated?",
+        new StepOptions(
+        StepEnum.Delegate, 
+        StepEnum.IsSchedulable,
+        StepEnum.IsDoableNow, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined)
+        )
+      ),      
+      new Step(YesNo,
+      new StepSettings(
+        StepEnum.IsSchedulable,
+        "",
+        "Does this need to be done on a specific date and time?",
+        new StepOptions(
+        StepEnum.Schedule, 
+        StepEnum.RefineAction,
+        StepEnum.IsDelegatable, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined)
+        )
+      ),      
+      new Step(Schedule,
+      new StepSettings(
+        StepEnum.Schedule,
+        "Create event ...",
+        "",
+        new StepOptions(
+        StepEnum.Undefined, 
+        StepEnum.Undefined,
+        StepEnum.IsSchedulable, 
+        StepEnum.ApproveChange, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined)
+        )
+      ),  
+      new Step(RefineAction,
+      new StepSettings(
+        StepEnum.Schedule,
+        "Please refine this task ...",
+        "",
+        new StepOptions(
+        StepEnum.Undefined, 
+        StepEnum.Undefined,
+        StepEnum.IsSchedulable, 
+        StepEnum.ApproveChange, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined)
+        )
+      ), 
+      new Step(Delegate,
+      new StepSettings(
+        StepEnum.Schedule,
+        "Please refine this task ...",
+        "",
+        new StepOptions(
+        StepEnum.Undefined, 
+        StepEnum.Undefined,
+        StepEnum.IsSchedulable, 
+        StepEnum.ApproveChange, 
+        StepEnum.Undefined, 
+        StepEnum.Undefined)
+        )
+      )     
 
            
     ]

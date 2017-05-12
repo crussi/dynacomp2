@@ -7,8 +7,8 @@ import { StepEnum } from '../step.enum';
   //templateUrl: './isactionable.component.html',
   template: `
     <div>
-      <h2 *ngIf="hasDeclaration">{{Data.Declaration}}</h2>
-      <h3 *ngIf="hasQuestion">{{Data.Question}}</h3>
+      <h2 *ngIf="hasDeclaration">{{Declaration}}</h2>
+      <h3 *ngIf="hasQuestion">{{Question}}</h3>
       <form action="">
         <input type="radio" name="gender" value="male">Trash?<br>
         <input type="radio" name="gender" value="female">Someday/maybe?<br>
