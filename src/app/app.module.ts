@@ -18,6 +18,8 @@ import { RefineAction } from './beginner/refineaction/refineaction.component';
 import { ProjectPlan } from './beginner/projectplan/projectplan.component';
 import { Delegate } from './beginner/delegate/delegate.component';
 import { Schedule } from './beginner/schedule/schedule.component';
+import { ProjectcreatedComponent } from './beginner/projectcreated/projectcreated.component';
+import { NewProject } from './beginner/newproject/newproject.component';
 
 @NgModule({
   declarations: [ AppComponent,
@@ -32,9 +34,11 @@ import { Schedule } from './beginner/schedule/schedule.component';
                   RefineAction,
                   ProjectPlan,
                   Delegate,
-                  Schedule ],
+                  Schedule,
+                  ProjectcreatedComponent,
+                  NewProject ],
   entryComponents: [
-                  YesNo, WizForm, NextAction, NonActionable, OkCancel, RefineAction, ProjectPlan, Delegate, Schedule ],
+                  YesNo, WizForm, NextAction, NonActionable, OkCancel, RefineAction, ProjectPlan, NewProject, Delegate, Schedule ],
   imports: [
     BrowserModule,
     FormsModule,

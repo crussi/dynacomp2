@@ -9,19 +9,21 @@ import { StepEnum } from '../step.enum';
     <div>
       <h2 *ngIf="hasDeclaration">{{Declaration}}</h2>
       <h3 *ngIf="hasQuestion">{{Question}}</h3>
-      <form action="">
-        <input type="radio" name="gender" value="male">Trash?<br>
-        <input type="radio" name="gender" value="female">Someday/maybe?<br>
-        <input type="radio" name="gender" value="other">Reference
+      <form #f="ngForm">
+        <input type="radio" name="nonactionable" [(ngModel)]="nonactionable" value="trash">Trash?<br>
+        <input type="radio" name="nonactionable" [(ngModel)]="nonactionable" value="someday">Someday/maybe?<br>
+        <input type="radio" name="nonactionable" [(ngModel)]="nonactionable" value="ref">Reference
       </form>      
 
       <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Previous</button>
-      <button *ngIf="hasNext" (click)="LoadStep(NextStep)">Next</button>
+      <button *ngIf="hasNext" (click)="Next()">Next</button>
     </div>
   `,  
   styleUrls: ['./nonactionable.component.css']
 })
 export class NonActionable extends BaseComponent implements OnInit   {
+
+  nonactionable = "";
 
   constructor() { 
     super();
@@ -31,6 +33,10 @@ export class NonActionable extends BaseComponent implements OnInit   {
     super.ngOnInit();
   }
 
-
+  Next() {
+    console.log('Next: ' + this.nonactionable);
+    
+    super.LoadStep(this.NextStep)
+  }
 
 }

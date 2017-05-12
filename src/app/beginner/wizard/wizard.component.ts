@@ -42,16 +42,31 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
 
   loadComponent(stepTransition:StepTransition) {
     //console.log('loadComponent ' + stepTransition.to + ' ads.length: ' + this.ads.length);
+    console.log('stepTransition.to: ' + stepTransition.to);
+    switch (stepTransition.to) {
+      case StepEnum.Navigate:
+        console.log('wizard navigate from here');
+        break;
+      case StepEnum.Done:
+        console.log('wizard is done, process next inbox item');
+        break;
+    }
     for (let i = 0; i < this.ads.length; i++) {
         //console.log('this.ads[i].Name: ' + this.ads[i].Name);
         //console.log('stepTransition.to: ' + stepTransition.to);
+
+
         if (this.ads[i].Name == stepTransition.to) {
           //console.log('found match:')
           let adItem: Step = this.ads[i];
-          if (adItem.Name == StepEnum.ApproveChange) {
-            //adItem.Steps.PrevStep = stepTransition.from;
-            adItem.Steps.CancelStep = stepTransition.from;
+          switch (adItem.Name) {
+            case StepEnum.ApproveChange:
+              //console.log('approve changes ...');
+              adItem.Steps.CancelStep = stepTransition.from;
+              //adItem.Settings.Declaration = stepTransition.approveMsg;
+              break;
           }
+
           let componentFactory = this._componentFactoryResolver.resolveComponentFactory(adItem.Component);
           let viewContainerRef = this.adHost.viewContainerRef;
           viewContainerRef.clear();

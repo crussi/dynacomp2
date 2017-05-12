@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { StepEnum, InputTypeEnum } from './step.enum';
+import { StepEnum, InputTypeEnum, NonActionableTypeEnum } from './step.enum';
 
 export class Step {
     //Name: StepEnum;
@@ -42,7 +42,7 @@ export class Step {
 }
 
 export class StepSettings {
-    constructor(public Name: StepEnum, public  Declaration: string, public  Question: string, public  Steps: StepOptions){}
+    constructor(public Name: StepEnum, public  Declaration: string = "", public  Question: string = "", public ApproveMsg: string = "", public  Steps: StepOptions){}
 }
 
 export class StepOptions {
@@ -81,6 +81,69 @@ export class StepTransition {
         this.from = from;
         this.to = to;
     }
+}
+
+export class ProjectPlan {
+    Outcome: string;
+    Title: string;
+    //Tasks and subtasks go here
+}
+
+export class NextAction {
+    Nextaction: string;
+}
+
+export class Delegate {
+    Name: string;
+}
+
+export class Schedule {
+    EventDate: Date;
+    Title: string;
+}
+
+export class Action {
+    NextAction: string;
+    DateCreated: Date;
+    CreatedBy: User;
+}
+
+export class User {
+    Name: string;
+    Id: string;
+}
+
+export class WizState {
+    //Transition: StepTransition;
+    IsActionable?: boolean;
+    NonActionable?: NonActionableTypeEnum;
+    IsProject?: boolean;
+    ProjectPlan?: ProjectPlan;
+    NextAction?: NextAction;
+    IsDoableNow?: boolean;
+    IsDone?: boolean;
+    IsDelegatable?: boolean;
+    Delegate?: Delegate;
+    IsSchedulable?: boolean;
+    Schedule?: Schedule;
+    RefineAction?: Action;
+
+    constructor() {
+        //this.Transition = new StepTransition(StepEnum.Start,StepEnum.IsActionable);
+        let IsActionable = null;
+        let NonActionable = null;
+        let IsProject = null;
+        let ProjectPlan = null;
+        let NextAction = null;
+        let IsDoableNow = null;
+        let IsDone = null;
+        let IsDelegatable = null;
+        let Delegate = null;
+        let IsSchedulable = null;
+        let Schedule = null;
+        let RefineAction = null;        
+    }
+
 }
 
 

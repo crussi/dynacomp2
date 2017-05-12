@@ -70,43 +70,9 @@ export class BaseComponent implements OnInit  {
     //this.Initialize();
   }
 
-
-
   LoadStep(step:StepEnum) {
     console.log('LoadStep:' + step);
     this.stepChanged.emit(new StepTransition(this.Settings.Name, step));
   }
-
-  // Initialize(){
-  //   console.log('Initialize ',this.Settings);
-    // this.hasDeclaration = this.Settings.Declaration.length > 0;
-    // this.hasQuestion = this.Settings.Question.length > 0;
-    // if (this.Settings.Steps.YesStep != StepEnum.Undefined) {
-    //   this.hasYes = true;
-    //   this.YesStep = this.Settings.Steps.YesStep;
-    // }
-    // if (this.Settings.Steps.NoStep != StepEnum.Undefined) {
-    //   this.hasNo = true;
-    //   this.NoStep = this.Settings.Steps.NoStep;
-    // } 
-    // if (this.Settings.Steps.OkStep != StepEnum.Undefined) {
-    //   this.hasOk = true;
-    //   this.OkStep = this.Settings.Steps.OkStep;
-    // }
-    // if (this.Settings.Steps.CancelStep != StepEnum.Undefined) {
-    //   this.hasCancel = true;
-    //   this.CancelStep = this.Settings.Steps.CancelStep;
-    // }         
-    // if (this.Settings.Steps.PrevStep != StepEnum.Undefined) {
-    //   this.hasPrev = true;
-    //   this.PrevStep = this.Settings.Steps.PrevStep;
-    // }    
-    // if (this.Settings.Steps.NextStep != StepEnum.Undefined) {
-    //   this.hasNext = true;
-    //   this.NextStep = this.Settings.Steps.NextStep;
-    // } 
-
-
-  // }
 
 }

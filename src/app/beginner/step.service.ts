@@ -8,6 +8,7 @@ import { NextAction } from './nextaction/nextaction.component';
 import { NonActionable } from './nonactionable/nonactionable.component';
 import { RefineAction } from './refineaction/refineaction.component';
 import { ProjectPlan } from './projectplan/projectplan.component';
+import { NewProject } from './newproject/newproject.component';
 import { Delegate } from './delegate/delegate.component';
 import { Schedule } from './schedule/schedule.component';
 
@@ -23,6 +24,7 @@ export class StepService {
         StepEnum.IsActionable,
         "",
         "Is this actionable?",
+        "",
         new StepOptions(
         StepEnum.IsProject, 
         StepEnum.NonActionable,
@@ -37,6 +39,7 @@ export class StepService {
         StepEnum.IsProject,
         "",
         "Does this require multiple steps?",
+        "",
         new StepOptions(
         StepEnum.ProjectPlan, 
         StepEnum.NextAction,
@@ -51,20 +54,37 @@ export class StepService {
         StepEnum.ProjectPlan,
         "",
         "What is the successful outcome?",
+        "Project created.",
         new StepOptions(
         undefined, 
         undefined,
         StepEnum.IsProject, 
-        StepEnum.ApproveChange, 
+        StepEnum.NewProject, 
         undefined, 
         undefined)
         )
-      ),      
+      ),  
+      new Step(NewProject,
+      new StepSettings(
+        StepEnum.NewProject,
+        "Project created.",
+        "Go to new project or continue processing inbox?",
+        "",
+        new StepOptions(
+        StepEnum.Navigate, 
+        StepEnum.Done,
+        StepEnum.ProjectPlan, 
+        undefined, 
+        undefined, 
+        undefined)
+        )
+      ),          
       new Step(NextAction,
       new StepSettings(
         StepEnum.NextAction,
         "",
         "What is the next action?",
+        "",
         new StepOptions(
         undefined, 
         undefined,
@@ -79,6 +99,7 @@ export class StepService {
         StepEnum.NonActionable,
         "",
         "How would you categorize this?",
+        "",
         new StepOptions(
         undefined, 
         undefined,
@@ -93,6 +114,7 @@ export class StepService {
         StepEnum.ApproveChange,
         "",
         "Approve change?",
+        "",
         new StepOptions(
         undefined, 
         undefined,
@@ -107,6 +129,7 @@ export class StepService {
         StepEnum.IsDoableNow,
         "",
         "Can this be done in 2-5 minutes?",
+        "",
         new StepOptions(
         StepEnum.DoItNow, 
         StepEnum.IsDelegatable,
@@ -121,6 +144,7 @@ export class StepService {
         StepEnum.DoItNow,
         "Do it now!",
         "Did you do it?",
+        "Task mark completed ...",
         new StepOptions(
         StepEnum.ApproveChange, 
         StepEnum.IsDelegatable,
@@ -135,6 +159,7 @@ export class StepService {
         StepEnum.IsDelegatable,
         "",
         "Can this be delegated?",
+        "",
         new StepOptions(
         StepEnum.Delegate, 
         StepEnum.IsSchedulable,
@@ -149,6 +174,7 @@ export class StepService {
         StepEnum.IsSchedulable,
         "",
         "Does this need to be done on a specific date and time?",
+        "",
         new StepOptions(
         StepEnum.Schedule, 
         StepEnum.RefineAction,
@@ -162,6 +188,7 @@ export class StepService {
       new StepSettings(
         StepEnum.Schedule,
         "Create event ...",
+        "",
         "",
         new StepOptions(
         undefined, 
@@ -177,6 +204,7 @@ export class StepService {
         StepEnum.RefineAction,
         "Please refine this task ...",
         "",
+        "",
         new StepOptions(
         undefined, 
         undefined,
@@ -191,6 +219,7 @@ export class StepService {
         StepEnum.Delegate,
         "Select delegate ...",
         "",
+        "Delegate selected",
         new StepOptions(
         undefined, 
         undefined,

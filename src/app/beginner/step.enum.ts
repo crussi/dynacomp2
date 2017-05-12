@@ -19,7 +19,8 @@ export enum StepEnum {
     ApproveNewTask = 17,
     ApproveChange = 18,
     Start = 19,
-    Done = 20
+    Done = 20,
+    Navigate = 21,
 }
 
 export enum InputTypeEnum {
@@ -27,4 +28,11 @@ export enum InputTypeEnum {
     Options = 1,
     Form = 2,
     OkCancel = 3
+}
+
+export enum NonActionableTypeEnum {
+    Undefined = 0,
+    Trash = 1,
+    Someday = 2,
+    Reference = 3
 }
