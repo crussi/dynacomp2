@@ -9,8 +9,8 @@ import { StepEnum } from '../step.enum';
     <div>
       <h2 *ngIf="hasDeclaration">{{Declaration}}</h2>
       <h3 *ngIf="hasQuestion">{{Question}}</h3>
-      <input placeholder="Outcome"/>
-      <input placeholder="Project title"/>
+      <input type="text" placeholder="Outcome">
+      <input type="text" placeholder="Project title">
 
       <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Previous</button>
       <button *ngIf="hasNext" (click)="LoadStep(NextStep)">Next</button>

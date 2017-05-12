@@ -58,7 +58,12 @@ export class BaseComponent implements OnInit  {
   get hasOk(): boolean {
     return this.Settings.Steps.hasOk;
   }     
-
+  get CancelStep(): StepEnum {
+    return this.Settings.Steps.CancelStep;
+  }
+  get hasCancel(): boolean {
+    return this.Settings.Steps.hasCancel;
+  } 
   constructor() { }
 
   ngOnInit() {

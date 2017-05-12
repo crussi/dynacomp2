@@ -46,7 +46,7 @@ export class StepService {
         undefined)
         )
       ),
-      new Step(YesNo,
+      new Step(ProjectPlan,
       new StepSettings(
         StepEnum.ProjectPlan,
         "",
@@ -62,7 +62,7 @@ export class StepService {
       ),      
       new Step(NextAction,
       new StepSettings(
-        StepEnum.ProjectPlan,
+        StepEnum.NextAction,
         "",
         "What is the next action?",
         new StepOptions(
@@ -76,7 +76,7 @@ export class StepService {
       ),           
       new Step(NonActionable,
       new StepSettings(
-        StepEnum.ProjectPlan,
+        StepEnum.NonActionable,
         "",
         "How would you categorize this?",
         new StepOptions(
@@ -94,10 +94,10 @@ export class StepService {
         "",
         "Approve change?",
         new StepOptions(
-        StepEnum.Done, 
-        StepEnum.Done,
-        StepEnum.Done, 
-        StepEnum.Done, 
+        undefined, 
+        undefined,
+        undefined, 
+        undefined, 
         StepEnum.Done, 
         StepEnum.Done)
         )
@@ -111,9 +111,9 @@ export class StepService {
         StepEnum.DoItNow, 
         StepEnum.IsDelegatable,
         StepEnum.NextAction, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined)
+        undefined, 
+        undefined, 
+        undefined)
         )
       ),           
       new Step(YesNo,
@@ -125,9 +125,9 @@ export class StepService {
         StepEnum.ApproveChange, 
         StepEnum.IsDelegatable,
         StepEnum.IsDoableNow, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined)
+        undefined, 
+        undefined, 
+        undefined)
         )
       ),      
       new Step(YesNo,
@@ -139,9 +139,9 @@ export class StepService {
         StepEnum.Delegate, 
         StepEnum.IsSchedulable,
         StepEnum.IsDoableNow, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined)
+        undefined, 
+        undefined, 
+        undefined)
         )
       ),      
       new Step(YesNo,
@@ -153,9 +153,9 @@ export class StepService {
         StepEnum.Schedule, 
         StepEnum.RefineAction,
         StepEnum.IsDelegatable, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined)
+        undefined, 
+        undefined, 
+        undefined)
         )
       ),      
       new Step(Schedule,
@@ -164,40 +164,40 @@ export class StepService {
         "Create event ...",
         "",
         new StepOptions(
-        StepEnum.Undefined, 
-        StepEnum.Undefined,
+        undefined, 
+        undefined,
         StepEnum.IsSchedulable, 
         StepEnum.ApproveChange, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined)
+        undefined, 
+        undefined)
         )
       ),  
       new Step(RefineAction,
       new StepSettings(
-        StepEnum.Schedule,
+        StepEnum.RefineAction,
         "Please refine this task ...",
         "",
         new StepOptions(
-        StepEnum.Undefined, 
-        StepEnum.Undefined,
+        undefined, 
+        undefined,
         StepEnum.IsSchedulable, 
         StepEnum.ApproveChange, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined)
+        undefined, 
+        undefined)
         )
       ), 
       new Step(Delegate,
       new StepSettings(
-        StepEnum.Schedule,
-        "Please refine this task ...",
+        StepEnum.Delegate,
+        "Select delegate ...",
         "",
         new StepOptions(
-        StepEnum.Undefined, 
-        StepEnum.Undefined,
+        undefined, 
+        undefined,
         StepEnum.IsSchedulable, 
         StepEnum.ApproveChange, 
-        StepEnum.Undefined, 
-        StepEnum.Undefined)
+        undefined, 
+        undefined)
         )
       )     
 
