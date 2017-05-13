@@ -5,7 +5,7 @@ import { WizardDirective } from '../../wizard.directive';
 //import { AdItem }      from './ad-item';
 //import { StepYesNo, StepOptions} from '../step.model';
 import { StepEnum } from '../step.enum';
-import { Step, StepTransition } from '../step.model';
+import { Step, StepTransition, WizState, WizStateChange } from '../step.model';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
@@ -20,6 +20,7 @@ import { BaseComponent } from '../base/base.component';
 export class BeginnerWizard implements AfterViewInit, OnDestroy {
   @Input() ads: Step[];
   currentAddIndex: number = -1;
+  State: WizState;
   @ViewChild(WizardDirective) adHost: WizardDirective;
   subscription: any;
   interval: any;
@@ -31,6 +32,7 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
     // this.getAds();
   }
   ngAfterContentInit() {
+    this.State = new WizState();
     this.loadComponent(new StepTransition(StepEnum.Start,StepEnum.IsActionable));
     //this.getAds();  
   }
@@ -39,10 +41,14 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
     clearInterval(this.interval);
   }
 
+  stateChanged(change:WizStateChange) {
+    console.log('wiz stateChanged: ' + StepEnum[change.Step] + ' ' + change.Value);
+  }
 
   loadComponent(stepTransition:StepTransition) {
     //console.log('loadComponent ' + stepTransition.to + ' ads.length: ' + this.ads.length);
     console.log('stepTransition.to: ' + stepTransition.to);
+    
     switch (stepTransition.to) {
       case StepEnum.Navigate:
         console.log('wizard navigate from here');
@@ -51,10 +57,12 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
         console.log('wizard is done, process next inbox item');
         break;
     }
+
+
+    //Find step component to load and load it
     for (let i = 0; i < this.ads.length; i++) {
         //console.log('this.ads[i].Name: ' + this.ads[i].Name);
         //console.log('stepTransition.to: ' + stepTransition.to);
-
 
         if (this.ads[i].Name == stepTransition.to) {
           //console.log('found match:')
@@ -72,9 +80,9 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
           viewContainerRef.clear();
 
           let componentRef = viewContainerRef.createComponent(componentFactory);
-          (<BaseComponent>componentRef.instance).Settings = adItem.Settings;
-          
-          (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event)); //= function(event) { console.log('hello world'); }
+          (<BaseComponent>componentRef.instance).Settings = adItem.Settings;           
+          (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event));
+          (<BaseComponent>componentRef.instance).stateChanged.subscribe(event => this.stateChanged(event));
           break;          
         }
     }

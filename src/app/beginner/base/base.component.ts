@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StepEnum } from '../step.enum';
-import { StepTransition, StepSettings } from '../step.model';
+import { StepTransition, StepSettings, WizStateChange } from '../step.model';
 
 @Component({
   selector: 'base',
@@ -15,6 +15,7 @@ export class BaseComponent implements OnInit  {
   @Input() Settings: StepSettings;
   //@Input() trigger: Number;
   @Output() stepChanged: EventEmitter<StepTransition> = new EventEmitter();
+  @Output() stateChanged: EventEmitter<WizStateChange> = new EventEmitter();
 
   get Question(): string {
     return this.Settings.Question;
@@ -73,6 +74,10 @@ export class BaseComponent implements OnInit  {
   LoadStep(step:StepEnum) {
     console.log('LoadStep:' + step);
     this.stepChanged.emit(new StepTransition(this.Settings.Name, step));
+  }
+
+  StateChanged(change:WizStateChange) {
+    this.stateChanged.emit(change);
   }
 
 }

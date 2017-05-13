@@ -113,6 +113,10 @@ export class User {
     Id: string;
 }
 
+export class WizStateChange {    
+    constructor(public Step: StepEnum, public Value: any) {}
+}
+
 export class WizState {
     //Transition: StepTransition;
     IsActionable?: boolean;
