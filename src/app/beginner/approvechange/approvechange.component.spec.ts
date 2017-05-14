@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WizFormComponent } from './wiz-form.component';
+import { ApprovechangeComponent } from './approvechange.component';
 
-describe('WizFormComponent', () => {
-  let component: WizFormComponent;
-  let fixture: ComponentFixture<WizFormComponent>;
+describe('ApprovechangeComponent', () => {
+  let component: ApprovechangeComponent;
+  let fixture: ComponentFixture<ApprovechangeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WizFormComponent ]
+      declarations: [ ApprovechangeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WizFormComponent);
+    fixture = TestBed.createComponent(ApprovechangeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

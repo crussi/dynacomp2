@@ -3,20 +3,19 @@ import { BaseComponent } from '../base/base.component';
 import { StepEnum } from '../step.enum';
 
 @Component({
-  selector: 'okcancel',
+  selector: 'approvechange',
   //templateUrl: './isactionable.component.html',
   template: `
     <div>
       <h2 *ngIf="hasDeclaration">{{Declaration}}</h2>
       <h3 *ngIf="hasQuestion">{{Question}}</h3>
       <button *ngIf="hasOk" (click)="Ok(OkStep)">Ok</button>
-      <button *ngIf="hasCancel" (click)="Cancel(CancelStep)">Cancel</button>
-      <button *ngIf="hasPrev" (click)="StateChanged(PrevStep,undefined)">Previous</button>
+      <button *ngIf="hasCancel" (click)="Cancel(PrevStep)">Cancel</button>
     </div>
   `,  
-  styleUrls: ['./okcancel.component.css']
+  styleUrls: ['./approvechange.component.css']
 })
-export class OkCancel extends BaseComponent implements OnInit   {
+export class ApproveChange extends BaseComponent implements OnInit   {
 
   constructor() { 
     super();
@@ -28,12 +27,13 @@ export class OkCancel extends BaseComponent implements OnInit   {
   
   Ok(step:StepEnum){
     console.log('ok logic goes here');
-    super.LoadStep(step)
+    //super.LoadStep(step)
+    super.StateChanged(step,{'hello':'ok world'});
   }
 
   Cancel(step:StepEnum){
     console.log('cancel logic goes here');
-    super.LoadStep(step)
+    super.StateChanged(step,undefined);
   }
 
 }

@@ -15,8 +15,8 @@ import { StepEnum } from '../step.enum';
         <input type="radio" name="nonactionable" [(ngModel)]="nonactionable" value="ref">Reference
       </form>      
 
-      <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Previous</button>
-      <button *ngIf="hasNext" (click)="Next()">Next</button>
+      <button *ngIf="hasPrev" (click)="StateChanged(PrevStep,undefined)">Previous</button>
+      <button *ngIf="hasNext" (click)="Next(NextStep)">Next</button>
     </div>
   `,  
   styleUrls: ['./nonactionable.component.css']
@@ -33,10 +33,10 @@ export class NonActionable extends BaseComponent implements OnInit   {
     super.ngOnInit();
   }
 
-  Next() {
-    console.log('Next: ' + this.nonactionable);
+  Next(nextStep:StepEnum) {
+    //console.log('Next: ' + this.nonactionable);
     
-    super.LoadStep(this.NextStep)
+    super.StateChanged(nextStep, this.nonactionable);
   }
 
 }

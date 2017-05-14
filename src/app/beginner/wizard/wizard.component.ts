@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, AfterContentInit, ViewChild, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import { Component, Input, AfterViewInit, AfterContentInit, ViewChild, ComponentFactoryResolver, OnDestroy, OnInit } from '@angular/core';
 
 //import { AdDirective } from '../../ad.directive';
 import { WizardDirective } from '../../wizard.directive';
@@ -17,7 +17,7 @@ import { BaseComponent } from '../base/base.component';
               </div>
             `
 })
-export class BeginnerWizard implements AfterViewInit, OnDestroy {
+export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit {
   @Input() ads: Step[];
   currentAddIndex: number = -1;
   State: WizState;
@@ -27,12 +27,16 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
 
   constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
+  ngOnInit(){
+
+  }
   ngAfterViewInit() {
     // this.loadComponent();
     // this.getAds();
   }
   ngAfterContentInit() {
     this.State = new WizState();
+    
     this.loadComponent(new StepTransition(StepEnum.Start,StepEnum.IsActionable));
     //this.getAds();  
   }
@@ -41,11 +45,12 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
     clearInterval(this.interval);
   }
 
-  stateChanged(change:WizStateChange) {
-    console.log('wiz stateChanged: ' + StepEnum[change.Step] + ' ' + change.Value);
+  stateChanged(stateChange:WizStateChange) {
+    console.log('wiz stateChanged: ' + StepEnum[stateChange.Step], stateChange.Value);
+    this.loadComponent(stateChange.Transition);
   }
 
-  loadComponent(stepTransition:StepTransition) {
+  private loadComponent(stepTransition:StepTransition) {
     //console.log('loadComponent ' + stepTransition.to + ' ads.length: ' + this.ads.length);
     console.log('stepTransition.to: ' + stepTransition.to);
     
@@ -81,7 +86,7 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy {
 
           let componentRef = viewContainerRef.createComponent(componentFactory);
           (<BaseComponent>componentRef.instance).Settings = adItem.Settings;           
-          (<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event));
+          //(<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event));
           (<BaseComponent>componentRef.instance).stateChanged.subscribe(event => this.stateChanged(event));
           break;          
         }

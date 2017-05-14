@@ -16,8 +16,8 @@ import { StepEnum } from '../step.enum';
           <li>Micky Mouse</li>
           <li>Minnie Mouse</li>
         </ul>
-      <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Previous</button>
-      <button *ngIf="hasNext" (click)="LoadStep(NextStep)">Next</button>
+      <button *ngIf="hasPrev" (click)="StateChanged(PrevStep,undefined)">Previous</button>
+      <button *ngIf="hasNext" (click)="Next(NextStep)">Next</button>
     </div>
   `,  
   styleUrls: ['./delegate.component.css']
@@ -32,6 +32,7 @@ export class Delegate extends BaseComponent implements OnInit   {
     super.ngOnInit();
   }
 
-
-
+  Next(nextStep:StepEnum) {
+    super.StateChanged(nextStep, 'Donald Duck');
+  }
 }

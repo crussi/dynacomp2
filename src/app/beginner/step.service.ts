@@ -3,7 +3,6 @@ import { Step, StepSettings, StepOptions } from './step.model';
 import { StepEnum, InputTypeEnum } from './step.enum';
 import { YesNo } from './yesno/yesno.component';
 import { OkCancel } from './okcancel/okcancel.component';
-import { WizForm } from './wiz-form/wiz-form.component';
 import { NextAction } from './nextaction/nextaction.component';
 import { NonActionable } from './nonactionable/nonactionable.component';
 import { RefineAction } from './refineaction/refineaction.component';

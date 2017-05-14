@@ -114,40 +114,24 @@ export class User {
 }
 
 export class WizStateChange {    
-    constructor(public Step: StepEnum, public Value: any) {}
+    constructor(public Step: StepEnum, public Value: any, public Transition: StepTransition) {}
 }
 
-export class WizState {
-    //Transition: StepTransition;
-    IsActionable?: boolean;
-    NonActionable?: NonActionableTypeEnum;
-    IsProject?: boolean;
-    ProjectPlan?: ProjectPlan;
-    NextAction?: NextAction;
-    IsDoableNow?: boolean;
-    IsDone?: boolean;
-    IsDelegatable?: boolean;
-    Delegate?: Delegate;
-    IsSchedulable?: boolean;
-    Schedule?: Schedule;
-    RefineAction?: Action;
+export class StepState {
+    constructor(public Step: string, public State: any) {}
+}
 
-    constructor() {
-        //this.Transition = new StepTransition(StepEnum.Start,StepEnum.IsActionable);
-        let IsActionable = null;
-        let NonActionable = null;
-        let IsProject = null;
-        let ProjectPlan = null;
-        let NextAction = null;
-        let IsDoableNow = null;
-        let IsDone = null;
-        let IsDelegatable = null;
-        let Delegate = null;
-        let IsSchedulable = null;
-        let Schedule = null;
-        let RefineAction = null;        
+export class WizState extends Array<StepState> {
+    constructor(){
+        super();
+        for (let item in StepEnum) {
+            if (!isNaN(Number(item))) {
+                console.log('[' + item + '] = ' + StepEnum[item]);
+                this.push(new StepState(StepEnum[item],undefined));
+            }
+        }
+        console.dir(this);        
     }
 
 }
-
 

@@ -11,8 +11,8 @@ import { StepEnum } from '../step.enum';
       <h3 *ngIf="hasQuestion">{{Question}}</h3>
       <p>Schedule controls go here ....</p>
       
-      <button *ngIf="hasPrev" (click)="LoadStep(PrevStep)">Previous</button>
-      <button *ngIf="hasNext" (click)="LoadStep(NextStep)">Next</button>
+      <button *ngIf="hasPrev" (click)="StateChanged(PrevStep,undefined)">Previous</button>
+      <button *ngIf="hasNext" (click)="Next(NextStep)">Next</button>
     </div>
   `,  
   styleUrls: ['./schedule.component.css']
@@ -27,6 +27,8 @@ export class Schedule extends BaseComponent implements OnInit   {
     super.ngOnInit();
   }
 
-
+  Next(nextStep:StepEnum) {
+    super.StateChanged(nextStep, {'schedule':'hello world'});
+  }
 
 }

@@ -76,8 +76,10 @@ export class BaseComponent implements OnInit  {
     this.stepChanged.emit(new StepTransition(this.Settings.Name, step));
   }
 
-  StateChanged(change:WizStateChange) {
-    this.stateChanged.emit(change);
+  // StateChanged(change:WizStateChange) {
+  //   this.stateChanged.emit(change);
+  // }
+  StateChanged(nextStep:StepEnum, val: any) {
+    this.stateChanged.emit(new WizStateChange(this.Settings.Name, val,new StepTransition(this.Settings.Name,nextStep)));
   }
-
 }
