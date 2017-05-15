@@ -5,7 +5,7 @@ import { WizardDirective } from '../../wizard.directive';
 //import { AdItem }      from './ad-item';
 //import { StepYesNo, StepOptions} from '../step.model';
 import { StepEnum } from '../step.enum';
-import { Step, StepTransition, WizState, WizStateChange } from '../step.model';
+import { Step, StepTransition, WizState, StepState, WizStateChange } from '../step.model';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
@@ -47,6 +47,9 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit {
 
   stateChanged(stateChange:WizStateChange) {
     console.log('wiz stateChanged: ' + StepEnum[stateChange.Step], stateChange.Value);
+    this.State[stateChange.Step] = new StepState(StepEnum[stateChange.Step],stateChange.Value);
+    //this.State.update(stateChange);
+    console.dir(this.State);
     this.loadComponent(stateChange.Transition);
   }
 

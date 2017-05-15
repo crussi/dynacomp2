@@ -121,7 +121,7 @@ export class StepState {
     constructor(public Step: string, public State: any) {}
 }
 
-export class WizState extends Array<StepState> {
+export class WizState extends Array<StepState>  {
     constructor(){
         super();
         for (let item in StepEnum) {
@@ -132,6 +132,11 @@ export class WizState extends Array<StepState> {
         }
         console.dir(this);        
     }
+
+    
+    // update(stateChange:WizStateChange){
+    //     this[stateChange.Step] = new StepState(StepEnum[stateChange.Step],stateChange.Value);
+    // }
 
 }
 
