@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StepService } from './beginner/step.service';
-import { Step } from './beginner/step.model';
+import { InboxService } from './beginner/inbox.service';
+import { Step, InboxItem } from './beginner/step.model';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,21 @@ import { Step } from './beginner/step.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  ads: Step[];
+  steps: Step[];
+  inboxItem: InboxItem;
 
-  constructor(private stepService: StepService) {}
+  constructor(private stepService: StepService,
+              private inboxService: InboxService) {}
 
   ngOnInit() {
-    this.ads = this.stepService.getSteps();
+    this.steps = this.stepService.getSteps();
+    let inboxitems: InboxItem[] = this.inboxService.getInbox();
+    if (inboxitems.length) {
+      this.inboxItem = inboxitems[0];
+    }
   }
+
+  onInboxItemProcessed($event){
+    console.log('app.component done!');
+  }  
 }

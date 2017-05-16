@@ -1,12 +1,6 @@
 import { Type } from '@angular/core';
-import { StepEnum, InputTypeEnum } from './step.enum';
-import { WizStateChange } from './step.model';
+import { StepEnum } from './step.enum';
 
-
-interface IUpdate {
-    update(stateChange:WizStateChange);
-}
-export default IUpdate;
 
 // export interface IStep {
 //     Name: StepEnum;    

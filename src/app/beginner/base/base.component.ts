@@ -15,7 +15,7 @@ export class BaseComponent implements OnInit  {
   @Input() Settings: StepSettings;
   @Input() State: any;
   //@Input() trigger: Number;
-  @Output() stepChanged: EventEmitter<StepTransition> = new EventEmitter();
+  // @Output() stepChanged: EventEmitter<StepTransition> = new EventEmitter();
   @Output() stateChanged: EventEmitter<WizStateChange> = new EventEmitter();
 
   get Question(): string {
@@ -72,10 +72,10 @@ export class BaseComponent implements OnInit  {
     //this.Initialize();
   }
 
-  LoadStep(step:StepEnum) {
-    console.log('LoadStep:' + step);
-    this.stepChanged.emit(new StepTransition(this.Settings.Name, step));
-  }
+  // LoadStep(step:StepEnum) {
+  //   console.log('LoadStep:' + step);
+  //   this.stepChanged.emit(new StepTransition(this.Settings.Name, step));
+  // }
 
   // StateChanged(change:WizStateChange) {
   //   this.stateChanged.emit(change);

@@ -1,5 +1,13 @@
 import { Type } from '@angular/core';
-import { StepEnum, InputTypeEnum, NonActionableTypeEnum } from './step.enum';
+import { StepEnum, NonActionableTypeEnum } from './step.enum';
+
+export class InboxItem {
+    constructor(public Description: string, public DateCreated: Date, public CreatedBy: string){}
+}
+
+export class InboxItemProcessed {    
+    constructor(public State:WizState) {}
+}
 
 export class Step {
     //Name: StepEnum;
@@ -123,7 +131,7 @@ export class StepState {
 
 export class WizState  {
     stepStates: Array<StepState>;
-    constructor(){
+    constructor(public inboxItem: InboxItem){
         //super();
         this.stepStates = new Array<StepState>();
         for (let item in StepEnum) {

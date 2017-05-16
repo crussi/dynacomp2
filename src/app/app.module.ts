@@ -6,13 +6,13 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { StepService } from './beginner/step.service';
+import { InboxService } from './beginner/inbox.service';
 import { BeginnerWizard } from './beginner/wizard/wizard.component';
 import { WizardDirective } from './wizard.directive';
 import { YesNo } from './beginner/yesno/yesno.component';
 import { BaseComponent } from './beginner/base/base.component';
 import { NextAction } from './beginner/nextaction/nextaction.component';
 import { NonActionable } from './beginner/nonactionable/nonactionable.component';
-import { OkCancel } from './beginner/okcancel/okcancel.component';
 import { RefineAction } from './beginner/refineaction/refineaction.component';
 import { ProjectPlan } from './beginner/projectplan/projectplan.component';
 import { Delegate } from './beginner/delegate/delegate.component';
@@ -28,7 +28,6 @@ import { ApproveChange} from './beginner/approvechange/approvechange.component';
                   BaseComponent,
                   NextAction,
                   NonActionable,
-                  OkCancel,
                   RefineAction,
                   ProjectPlan,
                   Delegate,
@@ -36,13 +35,21 @@ import { ApproveChange} from './beginner/approvechange/approvechange.component';
                   NewProject,
                   ApproveChange ],
   entryComponents: [
-                  YesNo, NextAction, NonActionable, OkCancel, RefineAction, ProjectPlan, NewProject, Delegate, Schedule, ApproveChange ],
+                  YesNo, 
+                  NextAction, 
+                  NonActionable, 
+                  RefineAction, 
+                  ProjectPlan, 
+                  NewProject, 
+                  Delegate, 
+                  Schedule, 
+                  ApproveChange ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [StepService],
+  providers: [StepService,InboxService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
