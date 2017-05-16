@@ -10,7 +10,7 @@ import { StepEnum } from '../step.enum';
       <h2 *ngIf="hasDeclaration">{{Declaration}}</h2>
       <h3 *ngIf="hasQuestion">{{Question}}</h3>
       <button *ngIf="hasOk" (click)="Ok(OkStep)">Ok</button>
-      <button *ngIf="hasCancel" (click)="Cancel(PrevStep)">Cancel</button>
+      <button *ngIf="hasCancel" (click)="Cancel(CancelStep)">Cancel</button>
     </div>
   `,  
   styleUrls: ['./approvechange.component.css']

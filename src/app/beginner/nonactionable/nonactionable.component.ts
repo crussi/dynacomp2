@@ -31,6 +31,9 @@ export class NonActionable extends BaseComponent implements OnInit   {
 
   ngOnInit() {
     super.ngOnInit();
+    if (this.State){
+      this.nonactionable = this.State;
+    }
   }
 
   Next(nextStep:StepEnum) {

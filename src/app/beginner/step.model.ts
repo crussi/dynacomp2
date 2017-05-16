@@ -121,22 +121,29 @@ export class StepState {
     constructor(public Step: string, public State: any) {}
 }
 
-export class WizState extends Array<StepState>  {
+export class WizState  {
+    stepStates: Array<StepState>;
     constructor(){
-        super();
+        //super();
+        this.stepStates = new Array<StepState>();
         for (let item in StepEnum) {
             if (!isNaN(Number(item))) {
-                console.log('[' + item + '] = ' + StepEnum[item]);
-                this.push(new StepState(StepEnum[item],undefined));
+                //console.log('[' + item + '] = ' + StepEnum[item]);
+                this.stepStates.push(new StepState(StepEnum[item],undefined));
             }
         }
         console.dir(this);        
     }
 
     
-    // update(stateChange:WizStateChange){
-    //     this[stateChange.Step] = new StepState(StepEnum[stateChange.Step],stateChange.Value);
-    // }
+    update(stateChange:WizStateChange){
+        //console.log('update',stateChange);
+        this.stepStates[stateChange.Step] = new StepState(StepEnum[stateChange.Step],stateChange.Value);
+    }
+
+    getState(step:StepEnum){
+        return this.stepStates[step].State;
+    }
 
 }
 

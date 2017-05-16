@@ -30,9 +30,12 @@ export class Delegate extends BaseComponent implements OnInit   {
 
   ngOnInit() {
     super.ngOnInit();
+    if (this.State) {
+      
+    }
   }
 
   Next(nextStep:StepEnum) {
-    super.StateChanged(nextStep, 'Donald Duck');
+    super.StateChanged(nextStep, {Delegate:"Donald Duck"});
   }
 }

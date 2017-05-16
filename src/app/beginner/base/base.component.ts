@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StepEnum } from '../step.enum';
-import { StepTransition, StepSettings, WizStateChange } from '../step.model';
+import { StepTransition, StepSettings, WizStateChange, StepState } from '../step.model';
 
 @Component({
   selector: 'base',
@@ -13,6 +13,7 @@ import { StepTransition, StepSettings, WizStateChange } from '../step.model';
 export class BaseComponent implements OnInit  {
   //Data: any;
   @Input() Settings: StepSettings;
+  @Input() State: any;
   //@Input() trigger: Number;
   @Output() stepChanged: EventEmitter<StepTransition> = new EventEmitter();
   @Output() stateChanged: EventEmitter<WizStateChange> = new EventEmitter();

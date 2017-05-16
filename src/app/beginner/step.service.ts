@@ -10,6 +10,7 @@ import { ProjectPlan } from './projectplan/projectplan.component';
 import { NewProject } from './newproject/newproject.component';
 import { Delegate } from './delegate/delegate.component';
 import { Schedule } from './schedule/schedule.component';
+import { ApproveChange} from './approvechange/approvechange.component';
 
 @Injectable()
 export class StepService {
@@ -108,7 +109,7 @@ export class StepService {
         undefined)
         )
       ),           
-      new Step(OkCancel,
+      new Step(ApproveChange,
       new StepSettings(
         StepEnum.ApproveChange,
         "",

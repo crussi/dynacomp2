@@ -9,8 +9,8 @@ import { StepEnum } from '../step.enum';
     <div>
       <h2 *ngIf="hasDeclaration">{{Declaration}}</h2>
       <h3 *ngIf="hasQuestion">{{Question}}</h3>
-      <input type="text" placeholder="Outcome">
-      <input type="text" placeholder="Project title">
+      <input type="text" placeholder="Outcome" [(ngModel)]="outcome" >
+      <input type="text" placeholder="Project title" [(ngModel)]="title" >
 
       <button *ngIf="hasPrev" (click)="StateChanged(PrevStep,undefined)">Previous</button>
       <button *ngIf="hasNext" (click)="Next(NextStep)">Next</button>
@@ -24,12 +24,18 @@ export class ProjectPlan extends BaseComponent implements OnInit   {
     super();
   }
 
+  outcome: string;
+  title: string;
   ngOnInit() {
     super.ngOnInit();
+    if (this.State) {
+      this.outcome = this.State.Outcome;
+      this.title = this.State.Title ;
+    } 
   }
 
   Next(nextStep:StepEnum) {
-    super.StateChanged(nextStep, {'Outcome':'Here is my outcome', 'Title':'My title'});
+    super.StateChanged(nextStep, {'Outcome':this.outcome, 'Title':this.title});
   }
 
 }

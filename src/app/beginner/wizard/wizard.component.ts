@@ -47,8 +47,8 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit {
 
   stateChanged(stateChange:WizStateChange) {
     console.log('wiz stateChanged: ' + StepEnum[stateChange.Step], stateChange.Value);
-    this.State[stateChange.Step] = new StepState(StepEnum[stateChange.Step],stateChange.Value);
-    //this.State.update(stateChange);
+    //this.State[stateChange.Step] = new StepState(StepEnum[stateChange.Step],stateChange.Value);
+    this.State.update(stateChange);
     console.dir(this.State);
     this.loadComponent(stateChange.Transition);
   }
@@ -77,8 +77,8 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit {
           let adItem: Step = this.ads[i];
           switch (adItem.Name) {
             case StepEnum.ApproveChange:
-              //console.log('approve changes ...');
               adItem.Steps.CancelStep = stepTransition.from;
+              console.log('wiz approve changes ...', adItem.Steps.CancelStep);
               //adItem.Settings.Declaration = stepTransition.approveMsg;
               break;
           }
@@ -88,7 +88,10 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit {
           viewContainerRef.clear();
 
           let componentRef = viewContainerRef.createComponent(componentFactory);
-          (<BaseComponent>componentRef.instance).Settings = adItem.Settings;           
+          (<BaseComponent>componentRef.instance).Settings = adItem.Settings;
+          //console.log('wiz getState stepTransition.to',stepTransition.to); 
+          //console.log('wiz getState',this.State.getState(stepTransition.to));
+          (<BaseComponent>componentRef.instance).State = this.State.getState(stepTransition.to);            
           //(<BaseComponent>componentRef.instance).stepChanged.subscribe(event => this.loadComponent(event));
           (<BaseComponent>componentRef.instance).stateChanged.subscribe(event => this.stateChanged(event));
           break;          

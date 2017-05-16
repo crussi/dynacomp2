@@ -9,7 +9,7 @@ import { StepEnum } from '../step.enum';
     <div>
       <h2 *ngIf="hasDeclaration">{{Declaration}}</h2>
       <h3 *ngIf="hasQuestion">{{Question}}</h3>
-      <input placeholder="Next action"/>
+      <input placeholder="Next action" [(ngModel)]="nextaction"/>
 
       <button *ngIf="hasPrev" (click)="StateChanged(PrevStep,undefined)">Previous</button>
       <button *ngIf="hasNext" (click)="Next(NextStep)">Next</button>
@@ -23,12 +23,18 @@ export class NextAction extends BaseComponent implements OnInit   {
     super();
   }
 
+  nextaction: string;
+
   ngOnInit() {
     super.ngOnInit();
+    if (this.State) {
+      this.nextaction = this.State.NextAction;
+    } 
+    
   }
 
   Next(nextStep:StepEnum) {
-    super.StateChanged(nextStep, {'nextaction':'hello world'});
+    super.StateChanged(nextStep, {'NextAction':this.nextaction});
   }
 
 }
