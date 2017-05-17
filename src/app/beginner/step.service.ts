@@ -10,6 +10,7 @@ import { NewProject } from './newproject/newproject.component';
 import { Delegate } from './delegate/delegate.component';
 import { Schedule } from './schedule/schedule.component';
 import { ApproveChange} from './approvechange/approvechange.component';
+import { Done } from './done/done.component';
 
 @Injectable()
 export class StepService {
@@ -227,8 +228,22 @@ export class StepService {
         undefined, 
         undefined)
         )
-      )     
-
+      ),
+      new Step(YesNo,
+      new StepSettings(
+        StepEnum.Done,
+        "",
+        "Process next Inbox item?",
+        "",
+        new StepOptions(
+        StepEnum.Next, 
+        StepEnum.Exit,
+        undefined, 
+        undefined, 
+        undefined, 
+        undefined)
+        )
+      )  
            
     ]
   }

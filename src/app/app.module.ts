@@ -19,6 +19,7 @@ import { Delegate } from './beginner/delegate/delegate.component';
 import { Schedule } from './beginner/schedule/schedule.component';
 import { NewProject } from './beginner/newproject/newproject.component';
 import { ApproveChange} from './beginner/approvechange/approvechange.component';
+import { Done } from './beginner/done/done.component';
 
 @NgModule({
   declarations: [ AppComponent,
@@ -33,7 +34,8 @@ import { ApproveChange} from './beginner/approvechange/approvechange.component';
                   Delegate,
                   Schedule,
                   NewProject,
-                  ApproveChange ],
+                  ApproveChange,
+                  Done],
   entryComponents: [
                   YesNo, 
                   NextAction, 
@@ -43,7 +45,8 @@ import { ApproveChange} from './beginner/approvechange/approvechange.component';
                   NewProject, 
                   Delegate, 
                   Schedule, 
-                  ApproveChange ],
+                  ApproveChange,
+                  Done ],
   imports: [
     BrowserModule,
     FormsModule,

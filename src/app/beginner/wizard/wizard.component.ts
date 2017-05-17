@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, AfterContentInit, ViewChild, ComponentFactoryResolver, OnDestroy, OnInit, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, AfterViewInit, AfterContentInit, ViewChild, ComponentFactoryResolver, OnDestroy, OnInit, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 //import { AdDirective } from '../../ad.directive';
 import { WizardDirective } from '../../wizard.directive';
@@ -12,20 +12,23 @@ import { BaseComponent } from '../base/base.component';
   selector: 'beginner-wizard',
   template: `
               <div class="ad-banner">
-                <h3>{{inboxItem.Description}}</h3>
+                <h3 *ngIf="displayDesc">{{inboxItem.Description}}</h3>
+                <h3 *ngIf="!displayDesc"></h3>
                 <ng-template wizard-host></ng-template>                
               </div>
             `
 })
-export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit {
+export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit, OnChanges {
   @Input() steps: Step[];
   @Input() inboxItem: InboxItem;
   @Output() onInboxItemProcessed: EventEmitter<InboxItemProcessed> = new EventEmitter();
+  //@Output() onHideDescription: EventEmitter<boolean> = new EventEmitter();
   currentAddIndex: number = -1;
   State: WizState;
   @ViewChild(WizardDirective) adHost: WizardDirective;
   subscription: any;
   interval: any;
+  displayDesc = true;
 
   constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
@@ -37,14 +40,29 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit {
     // this.getAds();
   }
   ngAfterContentInit() {
-    this.State = new WizState(this.inboxItem);
-    
-    this.loadComponent(new StepTransition(StepEnum.Start,StepEnum.IsActionable));
     //this.getAds();  
+    this.initialize();
   }
 
   ngOnDestroy() {
     clearInterval(this.interval);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // changes.prop contains the old and the new value...
+    console.log('ngOnChanges', changes);
+
+    if (changes.inboxItem) {
+      console.log('got inboxItem');
+      this.initialize();
+    }
+  
+  }  
+
+  initialize(){
+    this.State = new WizState(this.inboxItem);    
+    this.loadComponent(new StepTransition(StepEnum.Start,StepEnum.IsActionable));
+    
   }
 
   stateChanged(stateChange:WizStateChange) {
@@ -52,14 +70,23 @@ export class BeginnerWizard implements AfterViewInit, OnDestroy, OnInit {
     //this.State[stateChange.Step] = new StepState(StepEnum[stateChange.Step],stateChange.Value);
     this.State.update(stateChange);
     console.dir(this.State);
+    this.displayDesc = true;
 
     switch (stateChange.Transition.to) {
       case StepEnum.Navigate:
         console.log('wizard navigate from here');
         break;
       case StepEnum.Done:
+        console.log('Done hide description');
+        //this.onHideDescription.emit(true);
+        this.displayDesc = false;
+        break;
+      case StepEnum.Next:
         console.log('wizard is done, process next inbox item');
         this.onInboxItemProcessed.emit(new InboxItemProcessed(this.State));
+        break;
+      case StepEnum.Exit:
+        console.log('exit wizard');        
         break;
     }
 

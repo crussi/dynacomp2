@@ -15,8 +15,10 @@ export enum StepEnum {
     RefineAction = 13,
     ApproveChange = 14,
     Done = 15,
-    Navigate = 16,
-    Undefined = 17,
+    Next = 16,
+    Exit = 17,
+    Navigate = 18,
+    Undefined = 19
 }
 
 export enum NonActionableTypeEnum {

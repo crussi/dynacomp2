@@ -11,19 +11,31 @@ import { Step, InboxItem } from './beginner/step.model';
 export class AppComponent implements OnInit {
   steps: Step[];
   inboxItem: InboxItem;
+  inboxItems: InboxItem[];
+  index = 0;
+  //hideDescripiton: false;
 
   constructor(private stepService: StepService,
               private inboxService: InboxService) {}
 
   ngOnInit() {
     this.steps = this.stepService.getSteps();
-    let inboxitems: InboxItem[] = this.inboxService.getInbox();
-    if (inboxitems.length) {
-      this.inboxItem = inboxitems[0];
+    this.inboxItems = this.inboxService.getInbox();
+    if (this.inboxItems.length) {
+      this.inboxItem = this.inboxItems[this.index];
     }
   }
 
-  onInboxItemProcessed($event){
-    console.log('app.component done!');
-  }  
+  onInboxItemProcessed(event){
+    console.log('app.component done!',event);
+    if (++this.index <= this.steps.length) {
+      console.log('set new inboxItem');
+      this.inboxItem = this.inboxItems[this.index];
+    }
+  }
+
+  // onHideDescription(event){
+  //   console.log('hide description: ',event);
+
+  // }  
 }
